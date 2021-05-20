@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Test artur
 
+
         textView = findViewById(R.id.text);
 
 
