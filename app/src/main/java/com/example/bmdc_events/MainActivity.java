@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //test 0.3
+        //test
 
         textView = findViewById(R.id.text);
 
