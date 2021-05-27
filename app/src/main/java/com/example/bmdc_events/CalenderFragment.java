@@ -1,15 +1,20 @@
 package com.example.bmdc_events;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
 public class CalenderFragment extends Fragment{
 
@@ -32,15 +37,26 @@ public class CalenderFragment extends Fragment{
 
     CalendarView.OnDateChangeListener myCalendarListener = (view, year, month, day) -> {
 
-        month = month + 1;
-        String newDate = year+"-"+month+"-"+day;
+        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String id = prefs.getString("Id", null);//"No name defined" is the default value.
 
-        Bundle bundle = new Bundle();
-        bundle.putString("date", newDate);
+        if (!id.equals("60ad1c30c90b0e0f84efba94"))
+            Toast.makeText(getContext(), "Only an admin can make an appointment", Toast.LENGTH_SHORT).show();
 
-        FillDetailsDialogFragment dialogFragment = new FillDetailsDialogFragment();
-        dialogFragment.setArguments(bundle); // send argument to FillDetailsDialogFragment
-        dialogFragment.show(getActivity().getSupportFragmentManager(), "dialog fragment"); //show FillDetailsDialogFragment
+        else {
+
+            month = month + 1;
+            String newDate = year+"-"+month+"-"+day;
+
+            Bundle bundle = new Bundle();
+            bundle.putString("date", newDate);
+
+            FillDetailsDialogFragment dialogFragment = new FillDetailsDialogFragment();
+            dialogFragment.setArguments(bundle); // send argument to FillDetailsDialogFragment
+            dialogFragment.show(getActivity().getSupportFragmentManager(), "dialog fragment"); //show FillDetailsDialogFragment
+
+        }
+
     };
 
 }
