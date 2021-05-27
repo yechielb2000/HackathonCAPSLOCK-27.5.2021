@@ -2,31 +2,17 @@ package com.example.bmdc_events;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.WriteResult;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.http.GET;
-
-import static android.content.ContentValues.TAG;
-import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
@@ -61,16 +47,21 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         holder.acceptButton.setOnClickListener(v -> {
 
+            FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+            DocumentReference washingtonRef = fireStore.collection("events").document(event.getEventId());
+
             SharedPreferences preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             String id = preferences.getString("Id", null);
 
-            Toast.makeText(mInflater.getContext(), "userId : " + id, Toast.LENGTH_SHORT).show();
-            FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
 
+            if (holder.acceptButton.getText().equals("subscribe")) {
 
-            DocumentReference washingtonRef = fireStore.collection("events").document(event.getEventId());
-
-            washingtonRef.update("usersIdArray", FieldValue.arrayUnion(id));
+                washingtonRef.update("usersIdArray", FieldValue.arrayUnion(id));
+                holder.acceptButton.setText("unsubscribe");
+            }else{
+                washingtonRef.update("usersIdArray", FieldValue.arrayRemove(id));
+                holder.acceptButton.setText("subscribe");
+            }
         });
     }
 
