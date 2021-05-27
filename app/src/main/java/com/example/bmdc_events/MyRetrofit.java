@@ -1,5 +1,4 @@
 package com.example.bmdc_events;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -35,7 +34,7 @@ public interface MyRetrofit {
         }
     }
 
-    class MyRes {
+    public class MyRes {
         private String status;
         private String message;
 
