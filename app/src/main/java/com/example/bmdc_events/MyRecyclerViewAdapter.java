@@ -36,17 +36,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
+    // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
+    // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.row, parent, false);
         return new ViewHolder(view);
     }
 
+    // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Event event = mData.get(position);
