@@ -69,6 +69,9 @@ public class FillDetailsDialogFragment extends DialogFragment {
             //you need to get -> subject, text, date, deadlineDate
 
             if (bundle != null){
+
+                InitializeCloudFireStore fireStore = new InitializeCloudFireStore();
+                fireStore.addEvent(subject.getText().toString(), text.getText().toString(), date, deadlineDateSpinner.getSelectedItem().toString());
                 Toast.makeText(getActivity().getBaseContext(), "Subject - " + subject.getText() + "\nText - " + text.getText() + "\nDate - " + date + "\nDeadline - " + deadlineDateSpinner.getSelectedItem(), Toast.LENGTH_SHORT).show();
             }
             this.dismiss();

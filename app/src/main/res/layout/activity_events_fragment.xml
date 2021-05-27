@@ -7,9 +7,9 @@
     tools:context=".EventsFragment"
     android:background="@color/purple_200">
 
-    <TextView
-        android:id="@+id/text"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view_events"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

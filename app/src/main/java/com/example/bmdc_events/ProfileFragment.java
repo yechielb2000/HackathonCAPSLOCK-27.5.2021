@@ -44,9 +44,6 @@ public class ProfileFragment extends Fragment {
         Join_To_Telegram.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=BMDCEentsbot"));
             startActivity(intent);
-//            Intent i = new Intent(getActivity(), LoginSendEmail.class);
-//            startActivity(i);
-//            (getActivity()).overridePendingTransition(0, 0);
         });
 
         sign_out.setOnClickListener(v -> {
@@ -60,6 +57,5 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
-
     }
 }
