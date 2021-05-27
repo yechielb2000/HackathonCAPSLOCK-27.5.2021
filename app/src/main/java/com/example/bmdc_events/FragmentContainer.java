@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -37,9 +38,8 @@ public class FragmentContainer extends AppCompatActivity {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
+        @SuppressLint({"NonConstantResourceId", "SetTextI18n"}) @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
 
             Fragment selectedFragment = new CalenderFragment();
             switch (item.getItemId()) {

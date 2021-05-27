@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         String name = prefs.getString("Id", "null");//"No name defined" is the default value.
 
 //        if (name.equals("null"))
-//            startActivity(new Intent(this, LoginSendEmail.class));
+            startActivity(new Intent(this, LoginSendEmail.class));
 
-        startActivity(new Intent(this, FragmentContainer.class));
+//        startActivity(new Intent(this, FragmentContainer.class));
     }
 
 }
