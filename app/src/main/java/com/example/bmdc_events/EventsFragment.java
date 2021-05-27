@@ -11,15 +11,8 @@ import androidx.fragment.app.Fragment;
 
 public class EventsFragment extends Fragment {
 
-    TextView textView;
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_events_fragment, container, false);
-
-        textView = view.findViewById(R.id.text);
-
-        textView.setText("gegjhleuh");
-
 
         return view;
 
