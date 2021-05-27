@@ -1,7 +1,6 @@
 package com.example.bmdc_events;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -12,8 +11,8 @@ public interface MyRetrofit {
     @POST("/auth/token")
     Call<MyRes> postUser(@Body MyBody body);
 
-//    @GET("/auth/verification/{token}")
-//    Call<VerRes> verify(@Path("token") String token);
+    @GET("/auth/verification/{token}")
+    Call<MyGetRes> verify(@Path("token") String token);
 
     class MyBody {
         private String email;
@@ -56,5 +55,40 @@ public interface MyRetrofit {
             this.message = message;
         }
     }
+
+    class MyGetRes {
+
+        String status;
+        Message message;
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public Message getMessage() {
+            return message;
+        }
+
+        public void setMessage(Message massege) {
+            this.message = massege;
+        }
+    }
+
+    class Message {
+        String userId;
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+    }
+
 
 }

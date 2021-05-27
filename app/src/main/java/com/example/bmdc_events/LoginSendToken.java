@@ -19,5 +19,12 @@ public class LoginSendToken extends AppCompatActivity {
         token = findViewById(R.id.token_tv);
         sendToken = findViewById(R.id.send_token_button);
 
+        sendToken.setOnClickListener(v -> {
+
+            PostRequest postRequest = new PostRequest();
+            assert token.getText() != null;
+            postRequest.sendGet(token.getText().toString(), this);
+        });
+
     }
 }

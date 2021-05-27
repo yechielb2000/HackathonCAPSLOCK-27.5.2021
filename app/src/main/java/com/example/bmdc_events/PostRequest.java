@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -22,11 +23,11 @@ public class PostRequest {
                 .baseUrl("https://capslock-core.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
+        client = retrofit.create(MyRetrofit.class);
     }
 
     public void createPost(String value, Context context){
 
-        client = retrofit.create(MyRetrofit.class);
         MyRetrofit.MyBody body = new MyRetrofit.MyBody();
         body.setApp("Bandio");
         body.setEmail(value);
@@ -40,17 +41,45 @@ public class PostRequest {
                     Toast.makeText(context, "Email was not sent successfully, please try again", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 MyRetrofit.MyRes postResponse =  response.body();
 
-                Toast.makeText(context, "Status : " + postResponse.getStatus() +  "\nMessage : " + postResponse.getMessage(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(context, postResponse.getStatus() +  "\n" + postResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context.getApplicationContext(), LoginSendToken.class));
             }
 
             @Override
             public void onFailure(Call<MyRetrofit.MyRes> call, Throwable t) {
 
+                Toast.makeText(context, "please contact us ", Toast.LENGTH_SHORT).show();
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void sendGet(String value, Context context){
+
+
+        Call<MyRetrofit.MyGetRes> res = client.verify(value);
+
+        res.enqueue(new Callback<MyRetrofit.MyGetRes>() {
+            @Override
+            public void onResponse(Call<MyRetrofit.MyGetRes> call, Response<MyRetrofit.MyGetRes> response) {
+
+                if (!response.isSuccessful()){
+                    Toast.makeText(context, "Token was not sent successfully, please try again", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                MyRetrofit.MyGetRes postResponse =  response.body();
+
+                Toast.makeText(context, postResponse.getMessage().userId, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<MyRetrofit.MyGetRes> call, Throwable t) {
+
+                Toast.makeText(context, "please contact us ", Toast.LENGTH_SHORT).show();
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
