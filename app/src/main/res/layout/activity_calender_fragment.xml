@@ -10,6 +10,15 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/please_pick_your_event_date"
+        android:textStyle="bold"
+        android:textColor="@color/teal_200"
+        android:textSize="25sp"
+        android:gravity="center" />
+
     <CalendarView
         android:id="@+id/calender"
         android:layout_width="match_parent"

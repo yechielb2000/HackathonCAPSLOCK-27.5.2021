@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == null)
             startActivity(new Intent(this, LoginSendEmail.class));
-
         else
             startActivity(new Intent(this, FragmentContainer.class));
     }

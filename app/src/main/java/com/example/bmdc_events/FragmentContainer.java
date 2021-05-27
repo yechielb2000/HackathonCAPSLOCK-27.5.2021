@@ -30,7 +30,7 @@ public class FragmentContainer extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bar_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-//        I added this if statement to keep the selected fragment when rotating the device
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalenderFragment()).commit();
         }

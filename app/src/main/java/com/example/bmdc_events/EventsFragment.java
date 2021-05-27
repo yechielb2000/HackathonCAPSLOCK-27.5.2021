@@ -59,9 +59,7 @@ public class EventsFragment extends Fragment {
             if (task.getResult() != null) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
 
-
                     Log.d(TAG, document.getId() + " => " + document.getData());
-
 
                     Map map = document.getData();
                     mapArrayList.add(map);
@@ -72,10 +70,8 @@ public class EventsFragment extends Fragment {
                             map.get("deadline date").toString());
 
                     events.add(event);
-
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(getContext(), event.toString(), Toast.LENGTH_LONG).show();
-
+//                    Toast.makeText(getContext(), event.toString(), Toast.LENGTH_LONG).show();
                 }
             }else{
                 Log.d(TAG, "maybe task getResult == null");
