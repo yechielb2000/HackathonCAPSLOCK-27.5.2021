@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
     //recycleview
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
 }

@@ -2,6 +2,7 @@ package com.example.bmdc_events;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,20 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.WriteResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.http.GET;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Context.DOWNLOAD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
@@ -28,20 +36,17 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
-    // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.row, parent, false);
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Event event = mData.get(position);
@@ -56,10 +61,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             SharedPreferences preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             String id = preferences.getString("Id", null);
 
+            Toast.makeText(mInflater.getContext(), "userId : " + id, Toast.LENGTH_SHORT).show();
             FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
-            fireStore.collection("events").get().addOnSuccessListener(queryDocumentSnapshots -> {
-                Toast.makeText(mInflater.getContext(), "userId : " + id, Toast.LENGTH_SHORT).show();
-            });
+
+
+            DocumentReference washingtonRef = fireStore.collection("events").document(event.getEventId());
+
+            washingtonRef.update("usersIdArray", FieldValue.arrayUnion(id));
         });
     }
 

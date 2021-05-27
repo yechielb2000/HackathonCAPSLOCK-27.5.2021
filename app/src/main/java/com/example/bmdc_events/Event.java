@@ -2,13 +2,22 @@ package com.example.bmdc_events;
 
 public class Event {
 
-    private String subject, text, date, deadlineDate;
+    private String subject, text, date, deadlineDate, eventId;
 
-    public Event(String subject, String text, String date, String deadlineDate) {
+    public Event(String subject, String text, String date, String deadlineDate, String eventId) {
         this.subject = subject;
         this.text = text;
         this.date = date;
         this.deadlineDate = deadlineDate;
+        this.eventId = eventId;
+    }
+
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getSubject() {

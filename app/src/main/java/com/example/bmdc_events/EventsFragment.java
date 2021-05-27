@@ -67,7 +67,8 @@ public class EventsFragment extends Fragment {
                     Event event = new Event(map.get("subject").toString(),
                             map.get("text").toString(),
                             map.get("date").toString(),
-                            map.get("deadline date").toString());
+                            map.get("deadline date").toString(),
+                            document.getId());
 
                     events.add(event);
                     adapter.notifyDataSetChanged();
