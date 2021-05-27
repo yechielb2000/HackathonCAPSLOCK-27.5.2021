@@ -62,7 +62,42 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/UserId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="UserId:"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/Id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginVertical="10dp"
+        android:layout_weight="0.5"
+        android:layout_gravity="center"
+        android:text="SIGN OUT"
+        android:textStyle="italic"/>
 
     <Button
         android:id="@+id/Join_To_Telegram"
