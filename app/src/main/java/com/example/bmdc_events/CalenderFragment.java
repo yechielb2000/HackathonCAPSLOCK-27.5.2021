@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,11 +20,22 @@ import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 public class CalenderFragment extends Fragment{
 
     CalendarView calendarView;
+    TextView text;
+    private boolean isAdmin;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_calender_fragment, container, false);
 
+        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String id = prefs.getString("Id", null);//"No name defined" is the default value.
+
         calendarView = view.findViewById(R.id.calender);
+        text = view.findViewById(R.id.text);
+
+        isAdmin = id.equals("60ad1c30c90b0e0f84efba94");
+
+        if (!isAdmin)
+            text.setText("Only an admin can make an appointment");
 
         calendarView.setOnDateChangeListener(myCalendarListener);
 
@@ -37,10 +49,7 @@ public class CalenderFragment extends Fragment{
 
     CalendarView.OnDateChangeListener myCalendarListener = (view, year, month, day) -> {
 
-        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        String id = prefs.getString("Id", null);//"No name defined" is the default value.
-
-        if (!id.equals("60ad1c30c90b0e0f84efba94"))
+        if (!isAdmin)
             Toast.makeText(getContext(), "Only an admin can make an appointment", Toast.LENGTH_SHORT).show();
 
         else {
