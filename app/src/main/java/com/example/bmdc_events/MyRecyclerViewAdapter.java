@@ -21,8 +21,9 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
-
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+
+
     private List<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
