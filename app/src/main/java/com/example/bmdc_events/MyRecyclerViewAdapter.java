@@ -53,14 +53,27 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             SharedPreferences preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             String id = preferences.getString("Id", null);
 
+            SharedPreferences Preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+            String button = Preferences.getString("button", "subscribe");//"No name defined" is the default value.
 
             if (holder.acceptButton.getText().equals("subscribe")) {
 
+                SharedPreferences.Editor editor = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("button", "unsubscribe");
+                editor.apply();
+
                 washingtonRef.update("usersIdArray", FieldValue.arrayUnion(id));
-                holder.acceptButton.setText("unsubscribe");
+                holder.acceptButton.setText(button);
+
             }else{
+
+                SharedPreferences.Editor editor = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("button", "subscribe");
+                editor.apply();
+
                 washingtonRef.update("usersIdArray", FieldValue.arrayRemove(id));
-                holder.acceptButton.setText("subscribe");
+                holder.acceptButton.setText(button);
+
             }
         });
     }
