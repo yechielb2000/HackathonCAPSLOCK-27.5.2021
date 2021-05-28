@@ -10,38 +10,53 @@
     android:background="@drawable/row_style"
     android:layout_margin="10dp">
 
-    <LinearLayout
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
                 android:text="date"/>
 
             <TextView
                 android:id="@+id/deadline_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
                 android:text="deadline date" />
 
-            <TextView
-                android:id="@+id/subject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="subject"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/accept_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="subscribe" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="subject"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -52,23 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="text"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </androidx.core.widget.NestedScrollView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/accept_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="subscribe" />
-
     </LinearLayout>
 
 </LinearLayout>
