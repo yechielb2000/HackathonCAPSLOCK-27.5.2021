@@ -1,5 +1,6 @@
 package com.example.bmdc_events;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -9,15 +10,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collection;
 import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
+public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
     private List<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
@@ -36,7 +41,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // binds the data to the TextView in each row
-    @Override
+
+    @Override @SuppressLint("SetTextI18n")
     public void onBindViewHolder(ViewHolder holder, int position) {
         Event event = mData.get(position);
 
@@ -45,36 +51,28 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.date.setText("Date : " + event.getDate());
         holder.deadlineDate.setText("DeadLine Date : " + event.getDeadlineDate());
 
-        holder.acceptButton.setOnClickListener(v -> {
+        FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+        DocumentReference washingtonRef = fireStore.collection("events").document(event.getEventId());
 
-            FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
-            DocumentReference washingtonRef = fireStore.collection("events").document(event.getEventId());
+        holder.acceptButton.setOnClickListener(v -> {
 
             SharedPreferences preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
             String id = preferences.getString("Id", null);
 
-            SharedPreferences Preferences = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-            String button = Preferences.getString("button", "subscribe");//"No name defined" is the default value.
-
-            if (holder.acceptButton.getText().equals("subscribe")) {
-
-                SharedPreferences.Editor editor = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("button", "unsubscribe");
-                editor.apply();
+            if (holder.acceptButton.getText().toString().equals("Subscribe")) {
 
                 washingtonRef.update("usersIdArray", FieldValue.arrayUnion(id));
-                holder.acceptButton.setText(button);
+
+                holder.acceptButton.setText("unSubscribe");
 
             }else{
 
-                SharedPreferences.Editor editor = mInflater.getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("button", "subscribe");
-                editor.apply();
-
                 washingtonRef.update("usersIdArray", FieldValue.arrayRemove(id));
-                holder.acceptButton.setText(button);
+
+                holder.acceptButton.setText("Subscribe");
 
             }
+
         });
     }
 
