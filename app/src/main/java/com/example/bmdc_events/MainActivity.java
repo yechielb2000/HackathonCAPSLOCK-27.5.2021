@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String id = prefs.getString("Id", null);//"No name defined" is the default value.
 
-        if (id == null)
-            startActivity(new Intent(this, LoginSendEmail.class));
-        else
+//        if (id == null)
+//            startActivity(new Intent(this, LoginSendEmail.class));
+//        else
             startActivity(new Intent(this, FragmentContainer.class));
     }
 

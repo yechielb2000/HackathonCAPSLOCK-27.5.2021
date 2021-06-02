@@ -1,5 +1,6 @@
 package com.example.bmdc_events;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -32,7 +32,7 @@ public class FillDetailsDialogFragment extends DialogFragment {
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_popup_window, container, false);
+        View view = inflater.inflate(R.layout.activity_dialog_fill_details, container, false);
 
         subject = view.findViewById(R.id.et_subject);
         text = view.findViewById(R.id.et_text);
@@ -42,7 +42,7 @@ public class FillDetailsDialogFragment extends DialogFragment {
         bundle = this.getArguments(); //get argument from CalendarFragment
         date = bundle.getString("date");
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
 
         List<Date> dates = getDates(dateFormat.format(cal.getTime()), date);
@@ -65,8 +65,6 @@ public class FillDetailsDialogFragment extends DialogFragment {
         });
 
         submit.setOnClickListener(v -> {
-
-            //you need to get -> subject, text, date, deadlineDate
 
             if (bundle != null){
 

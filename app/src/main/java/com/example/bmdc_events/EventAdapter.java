@@ -8,43 +8,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Collection;
 import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
-
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
     private List<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Event> data) {
+    EventAdapter(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // inflates the row layout from xml when needed
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.row, parent, false);
-        return new ViewHolder(view);
+    public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.event_card, parent, false);
+        return new EventViewHolder(view);
     }
 
     // binds the data to the TextView in each row
 
     @Override @SuppressLint("SetTextI18n")
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(EventViewHolder holder, int position) {
         Event event = mData.get(position);
 
         holder.subject.setText("Subject : " + event.getSubject());
@@ -83,13 +80,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return mData.size();
     }
 
-
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView subject, text, date, deadlineDate;
         Button acceptButton;
 
-        ViewHolder(View itemView) {
+        EventViewHolder(View itemView) {
             super(itemView);
             subject = itemView.findViewById(R.id.subject);
             text = itemView.findViewById(R.id.text);
@@ -103,11 +99,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    // convenience method for getting data at click position
-    Event getItem(int id) {
-        return mData.get(id);
     }
 
     // allows clicks events to be caught

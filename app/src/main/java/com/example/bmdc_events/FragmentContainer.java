@@ -7,18 +7,19 @@ import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class FragmentContainer extends AppCompatActivity {
 
-    public void onBackPressed() {
-    }
-
     private TextView current_fragment;
+    private ImageButton final_list_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,11 @@ public class FragmentContainer extends AppCompatActivity {
 
         current_fragment = findViewById(R.id.current_fragment);
         current_fragment.setText("Events");
+
+        final_list_button = findViewById(R.id.final_list_button);
+        final_list_button.setVisibility(View.GONE);
+
+        final_list_button.setOnClickListener(v -> new GetListsDialogFragment());
 
         BottomNavigationView bottomNav = findViewById(R.id.bar_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -46,16 +52,19 @@ public class FragmentContainer extends AppCompatActivity {
 
                 case R.id.calender_fragment_button:
                     current_fragment.setText("Calender");
+                    final_list_button.setVisibility(View.GONE);
                     selectedFragment = new CalenderFragment();
                     break;
 
                 case R.id.events_fragment_button:
                     current_fragment.setText("Events");
+                    final_list_button.setVisibility(View.VISIBLE);  //TODO only to admin
                     selectedFragment = new EventsFragment();
                     break;
 
                 case R.id.profile_fragment_button:
                     current_fragment.setText("Profile");
+                    final_list_button.setVisibility(View.GONE);
                     selectedFragment = new ProfileFragment();
                     break;
 
@@ -64,4 +73,7 @@ public class FragmentContainer extends AppCompatActivity {
             return true;
         }
     };
+
+    public void onBackPressed() {
+    }
 }

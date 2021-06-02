@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +24,7 @@ public class EventsFragment extends Fragment {
 
     RecyclerView recyclerViewEvents;
     List<Event> events;
-    MyRecyclerViewAdapter adapter;
+    EventAdapter adapter;
 
     View view;
 
@@ -37,10 +35,8 @@ public class EventsFragment extends Fragment {
         events = new ArrayList<>();
 
         recyclerViewEventsAdapter();
-
         getEvents();
         return view;
-
     }
 
     public List<Map> getEvents(){
@@ -59,7 +55,7 @@ public class EventsFragment extends Fragment {
             if (task.getResult() != null) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
 
-                    Log.d(TAG, document.getId() + " => " + document.getData());
+//                    Log.d(TAG, document.getId() + " => " + document.getData());
 
                     Map map = document.getData();
                     mapArrayList.add(map);
@@ -85,9 +81,7 @@ public class EventsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view_events);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MyRecyclerViewAdapter(getContext(), events);
+        adapter = new EventAdapter(getContext(), events);
         recyclerView.setAdapter(adapter);
     }
-
-
 }

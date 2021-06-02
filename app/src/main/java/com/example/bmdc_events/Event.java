@@ -16,16 +16,8 @@ public class Event {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
-
     public String getSubject() {
         return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     public String getText() {
@@ -40,16 +32,8 @@ public class Event {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getDeadlineDate() {
         return deadlineDate;
-    }
-
-    public void setDeadlineDate(String deadlineDate) {
-        this.deadlineDate = deadlineDate;
     }
 
     @Override

@@ -4,4 +4,7 @@
     <string name="email">Email</string>
     <string name="send_token">Send token</string>
     <string name="please_pick_your_event_date">Please pick your event date</string>
+    <string name="nothing_to_show">Nothing to show</string>
+    <string name="download_list">Download list</string>
+    <string name="show_list">Show list</string>
 </resources>
