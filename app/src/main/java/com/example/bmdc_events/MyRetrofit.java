@@ -34,7 +34,7 @@ public interface MyRetrofit {
         }
     }
 
-    public class MyRes {
+     class MyRes {
         private String status;
         private String message;
 
@@ -42,39 +42,20 @@ public interface MyRetrofit {
             return status;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
         public String getMessage() {
             return message;
         }
 
-        public void setMessage(String message) {
-            this.message = message;
-        }
     }
 
     class MyGetRes {
 
-        String status;
         Message message;
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
 
         public Message getMessage() {
             return message;
         }
 
-        public void setMessage(Message massege) {
-            this.message = massege;
-        }
     }
 
     class Message {
@@ -84,9 +65,6 @@ public interface MyRetrofit {
             return userId;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
     }
 
 

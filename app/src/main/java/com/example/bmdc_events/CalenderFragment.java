@@ -1,5 +1,6 @@
 package com.example.bmdc_events;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class CalenderFragment extends Fragment{
     TextView text;
     private boolean isAdmin;
 
+    @SuppressLint("SetTextI18n")
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_calender_fragment, container, false);
 
@@ -35,15 +37,13 @@ public class CalenderFragment extends Fragment{
 //        isAdmin = id.equals("60ad1c30c90b0e0f84efba94");
           isAdmin = true;
 
-        if (!isAdmin)
-            text.setText("Only an admin can make an appointment");
+        if (!isAdmin) text.setText("Only an admin can make an appointment");
 
         calendarView.setOnDateChangeListener(myCalendarListener);
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, Calendar.getInstance().getActualMinimum(Calendar.HOUR_OF_DAY));
-        long date = calendar.getTime().getTime();
-        calendarView.setMinDate(date);
+        calendarView.setMinDate(calendar.getTime().getTime());
 
         return view;
     }
