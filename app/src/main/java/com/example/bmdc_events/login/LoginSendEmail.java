@@ -1,12 +1,14 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.bmdc_events.bmdc_api.PostRequest;
+import com.example.bmdc_events.R;
 
 public class LoginSendEmail extends AppCompatActivity {
 

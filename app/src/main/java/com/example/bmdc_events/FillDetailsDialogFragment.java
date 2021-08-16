@@ -79,6 +79,7 @@ public class FillDetailsDialogFragment extends DialogFragment {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private List<Date> getDates(String dateString1, String dateString2) {
         ArrayList<Date> dates = new ArrayList<>();
         DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");

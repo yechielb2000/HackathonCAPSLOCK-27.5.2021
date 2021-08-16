@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.bmdc_events.fragments.FragmentContainer;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String MY_PREFS_NAME = "bmdc_events";

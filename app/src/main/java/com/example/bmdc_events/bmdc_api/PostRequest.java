@@ -1,12 +1,14 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.bmdc_api;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.bmdc_events.bmdc_api.MyRetrofit;
+import com.example.bmdc_events.fragments.FragmentContainer;
+import com.example.bmdc_events.login.LoginSendToken;
+
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 import retrofit2.Call;
 import retrofit2.Callback;
