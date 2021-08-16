@@ -26,7 +26,7 @@ public class FinalListAdapter extends  RecyclerView.Adapter<FinalListAdapter.Fin
 
     @Override @NonNull
     public FinalListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.users_event_card, parent, false);
+        View view = mInflater.inflate(R.layout.final_list_card, parent, false);
         return new  FinalListViewHolder(view);
     }
 

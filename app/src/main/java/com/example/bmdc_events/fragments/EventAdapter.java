@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,20 +19,26 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> implements Filterable {
 
-    private List<Event> mData;
+    private List<Event> list;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private List<Event> fullList;
 
     // data is passed into the constructor
     EventAdapter(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.list = data;
+
+        //for search option
+        fullList = new ArrayList<>();
+        fullList.addAll(list);
     }
 
     // inflates the row layout from xml when needed
@@ -44,7 +52,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override @SuppressLint("SetTextI18n")
     public void onBindViewHolder(EventViewHolder holder, int position) {
-        Event event = mData.get(position);
+        Event event = list.get(position);
 
         holder.subject.setText("Subject : " + event.getSubject());
         holder.text.setText(event.getText());
@@ -79,7 +87,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return list.size();
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -112,4 +120,42 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+
+                List<Event> filteredList = new ArrayList<>();
+
+                if (constraint == null || constraint.length() == 0) {
+
+                    filteredList.addAll(fullList);
+                } else {
+                    String filterPattern = constraint.toString().toLowerCase().trim();
+
+                    for (Event event : fullList) {
+                        if (event.getSubject().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(event);
+                        }
+                    }
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                list.clear();
+                list.addAll((List)results.values);
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 }
