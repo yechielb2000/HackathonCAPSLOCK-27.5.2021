@@ -23,21 +23,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5sp"
-                android:text="date"/>
+                android:text="@string/date"/>
 
             <TextView
                 android:id="@+id/deadline_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5sp"
-                android:text="deadline date" />
+                android:text="@string/deadline_date" />
 
 
             <Button
                 android:id="@+id/accept_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Subscribe"/>
+                android:text="@string/subscribe"/>
 
 
     </LinearLayout>
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="subject"
+            android:text="@string/subject"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -66,7 +66,7 @@
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="text"
+                android:text="@string/text"
                 android:textSize="16sp" />
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

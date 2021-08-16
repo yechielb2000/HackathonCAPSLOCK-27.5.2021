@@ -1,4 +1,4 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bmdc_events.Event;
+import com.example.bmdc_events.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;

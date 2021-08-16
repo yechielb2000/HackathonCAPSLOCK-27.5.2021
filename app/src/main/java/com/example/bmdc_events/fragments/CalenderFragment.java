@@ -1,4 +1,4 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.bmdc_events.FillDetailsDialogFragment;
+import com.example.bmdc_events.R;
 
 import java.util.Calendar;
 

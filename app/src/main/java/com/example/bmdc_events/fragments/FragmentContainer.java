@@ -1,19 +1,17 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import com.example.bmdc_events.GetListsDialogFragment;
+import com.example.bmdc_events.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 
 public class FragmentContainer extends AppCompatActivity {
 

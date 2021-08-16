@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.BMDCEvents">
-        <activity android:name=".LoginSendToken"/>
-        <activity android:name=".LoginSendEmail" />
-        <activity android:name=".FragmentContainer" />
+        <activity android:name=".login.LoginSendToken"/>
+        <activity android:name=".login.LoginSendEmail" />
+        <activity android:name=".fragments.FragmentContainer" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

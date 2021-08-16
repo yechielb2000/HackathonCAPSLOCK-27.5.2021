@@ -1,16 +1,13 @@
-package com.example.bmdc_events;
+package com.example.bmdc_events.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -18,6 +15,9 @@ import static com.example.bmdc_events.MainActivity.MY_PREFS_NAME;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.bmdc_events.login.LoginSendEmail;
+import com.example.bmdc_events.R;
 
 public class ProfileFragment extends Fragment {
 
